@@ -18,19 +18,17 @@ interface Props {
 
 
 const FlashCardControl = ({
-							actions,
-							btnColor,
-							handleAdd,
-							handleCancel,
-							handleEdit,
-							handleNext,
-							handlePrev,
-							handleRemove,
-							handleSave, 
-							saveOperation
-						   }
-							: Props
-						) => {
+			actions,
+			btnColor,
+			handleAdd,
+			handleCancel,
+			handleEdit,
+			handleNext,
+			handlePrev,
+			handleRemove,
+			handleSave, 
+			saveOperation
+		   }: Props) => {
 						
 	
 	
