@@ -73,7 +73,6 @@ const sendCards = (res) => {
 		if(err) throw err;
 		database.query("SELECT * FROM cards", (err, result) => {
 			if(err) throw err;
-			// console.log(result);
 			res.send(result);
 		})
 	});
