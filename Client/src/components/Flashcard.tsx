@@ -8,7 +8,7 @@ import RemoveCard from './RemoveCard'
 
 interface Props {
 	serverURL: string;
-	actions: {create: string, update: string, del: string};
+	actions: {create: string, update: string, remove: string};
 }
 
 
