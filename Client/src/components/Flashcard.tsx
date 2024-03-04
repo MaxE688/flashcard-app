@@ -14,12 +14,11 @@ interface Props {
 
 
 const Flashcard = ({serverURL, actions = {
-											create: 'create', 
-											update: 'update', 
-											remove: 'delete'
-										 }
-					}
-				: Props) => {
+					create: 'create', 
+					update: 'update', 
+					remove: 'delete'
+				 }
+				}: Props) => {
 
 	const [showAnswer, setShowAnswer] = useState(false);
 	const [cardIndex, setCardIndex] = useState(0);

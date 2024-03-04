@@ -6,10 +6,10 @@ import Flashcard from './components/Flashcard'
 function App() {
 
 	const actions = {
-						create: 'create', 
-						update: 'update', 
-						remove: 'delete'
-					};
+		create: 'create', 
+		update: 'update', 
+		remove: 'delete'
+	};
 	const serverURL = 'http://localhost:5174/';
 	
 	
