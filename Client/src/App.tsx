@@ -15,7 +15,7 @@ function App() {
 	
 
 	return (
-		<div className='grid  px-5' style={{'background-color':'#f0c2d5'}}>
+		<div className='grid bg-info px-5'}>
 			<div className='row  px-5'>
 				<div className='col text-center  px-5'>
 					<h1>Flash!</h1>
