@@ -19,7 +19,8 @@ const Flashcard = ({serverURL, actions = {
 					remove: 'delete'
 				 }
 				}: Props) => {
-
+	
+	//set state of app
 	const [showAnswer, setShowAnswer] = useState(false);
 	const [cardIndex, setCardIndex] = useState(0);
 	const [showEdit, setShowEdit] = useState(false);
@@ -30,13 +31,14 @@ const Flashcard = ({serverURL, actions = {
 	const [saveOperation, setSaveOperation] = useState("");
 	const [deck, setDeck] = useState([{answer: '', prompt: ''}]);
 	
+	//fetch deck from server
 	useEffect( () => {
 		
 		getDeck(setDeck);
 		
 	}, []);
 	
-	
+	//send GET request to server to recieve deck of flashcards
 	const getDeck = (setDeck) => {
 		
 		fetch(serverURL)
@@ -47,20 +49,24 @@ const Flashcard = ({serverURL, actions = {
 				setDeck(data);
 			})
 	}
-
-	const onClick = () => {
+	
+	//reveals/hides the answer when the card component is clicked
+	const revealAnswer = () => {
 		showAnswer ? console.log('hide answer') : console.log('reveal answer');
 		setShowAnswer(!showAnswer);
 	}
 	
+	//update the value of newPrompt for card manipulation
 	const onPromptChange = (value) => {
 		setNewPrompt(value);
 	}
 	
+	//update the value of newAnswer for card manipulation
 	const onAnswerChange = (value) => {
 		setNewAnswer(value);
 	}
 	
+	//resets the state of the app after an edit was made to the deck
 	const afterEdit = () => {
 		
 		
@@ -75,6 +81,7 @@ const Flashcard = ({serverURL, actions = {
 		setShowRemoved(false);
 	}
 	
+	//sends POST request to specified route on server to update the database
 	const updateDB = (cards, action = "") => {
 		
 		fetch(serverURL + action, {
@@ -91,10 +98,12 @@ const Flashcard = ({serverURL, actions = {
 				});
 	}
 	
+	//formats cardIndex to prevent out of bounds index value
 	const formatCardIndex = () => {
 		return cardIndex % deck.length;
 	}
 	
+	//handles add card action
 	const handleAdd = () => {
 		console.log("add")
 		setBtnColor('secondary')
@@ -102,16 +111,19 @@ const Flashcard = ({serverURL, actions = {
 		setSaveOperation(actions.create);
 	}
 	
+	//handles cancel button press
 	const handleCancel = () => {
 		afterEdit();
 	}
 	
+	//handles edit card action
 	const handleEdit = (answer, prompt) => {
 		setBtnColor('secondary');
 		setShowEdit(true);
 		setSaveOperation(actions.update);
 	}
 	
+	//handles next card button press
 	const handleNext = () => {
 		let newIndex = (cardIndex + 1) % deck.length;
 		setCardIndex(newIndex);
@@ -121,6 +133,7 @@ const Flashcard = ({serverURL, actions = {
 		console.log('next')
 	}
 	
+	//handles prev card button press
 	const handlePrev = () => {
 	
 		let newIndex = (cardIndex - 1) % deck.length;
@@ -134,13 +147,14 @@ const Flashcard = ({serverURL, actions = {
 		console.log('prev')
 	}
 	
+	//handles remove card action
 	const handleRemove = () => {
 		setBtnColor('secondary');
 		setShowRemoved(true);
 		setSaveOperation(actions.remove);
 	}
 	
-	
+	//handle save button press
 	const handleSave = () => {
 		
 		let saveCard; 
@@ -179,7 +193,12 @@ const Flashcard = ({serverURL, actions = {
 		
 			<div className='card bg-primary-subtle rounded-4 px-4 mb-5 pt-3'>
 				<div className='row card-body bg-subtle h-100 rounded-4 p-0' >
-					{
+					{	
+						{/* 
+						- if making edit render EditCard
+						- if deleting render RemoveCard
+						- if no action render current card
+						*/}
 						showEdit ?
 							<EditCard 
 								prompt={saveOperation === actions.create ? 
@@ -203,12 +222,13 @@ const Flashcard = ({serverURL, actions = {
 									prompt={deck[formatCardIndex()].prompt} 
 									answer={deck[formatCardIndex()].answer} 
 									showAnswer={showAnswer} 
-									onClick={onClick}
+									onClick={revealAnswer}
 								/>
 							
 					
 					}
 				</div>
+				{/* Render control buttons */}
 				<div className='px-5 mb-3 mt-4'>
 					<FlashCardControl
 						actions={actions}
@@ -227,14 +247,5 @@ const Flashcard = ({serverURL, actions = {
 	);
 }
 
-const useThrowAsyncError = () => {
-	const [state, setState] = useState();
-	
-	return (error: any) => {
-		setState(() => {
-			throw error;
-		});
-	}
-}
 
 export default Flashcard;

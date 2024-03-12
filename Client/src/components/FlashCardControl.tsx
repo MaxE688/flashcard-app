@@ -1,7 +1,5 @@
 import Button from './Button'
 
-
-
 interface Props {
 	actions: string;
 	btnColor: string;
@@ -34,7 +32,11 @@ const FlashCardControl = ({
 	
 	return (
 		<>
-			{
+			{	{/*
+				- if editing, or creating new flashcard render save/cancel buttons
+				- if deleting a flashcard render delete/cancel buttons
+				- when not editing/creating/deleting flashcard render Add/edit/Remove buttons
+				*/}
 				saveOperation === actions.update || saveOperation === actions.create?
 					<div className='row px-5'>
 						<div className='col btn-group px-0'>
@@ -98,6 +100,7 @@ const FlashCardControl = ({
 						</div>
 						</>
 			}
+			{/* render prev/next buttons, buttons are disabled if saveOperation */}
 			<div className='row px-5 mt-1'>
 				<div className='col btn-group px-0'>
 					<Button 

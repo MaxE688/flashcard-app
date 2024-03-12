@@ -6,7 +6,7 @@ interface Props {
 }
 
 const Card = ({answer, onClick, prompt, showAnswer}: Props) => {
-
+	// returns Card component to display the prompt and answer of the current flashcard
 	return (
 		
 			<button className='col bg-light text-dark text-center' onClick={onClick} >

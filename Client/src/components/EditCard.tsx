@@ -13,7 +13,7 @@ interface Props {
 
 
 const EditCard = ({answer,onAnswerChange, onPromptChange, prompt}: Props) => {
-
+	//returns EditCard component for editing/adding cards
 	return (
 		<>
 			<button className='col bg-light text-center' >

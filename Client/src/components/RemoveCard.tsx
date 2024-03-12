@@ -3,7 +3,8 @@ interface Props {
 }
 
 const RemoveCard = ({card}) => {
-
+	
+	//returns component prompting user to verify delete request
 	return (
 		
 			<button className='col bg-light  text-center'>

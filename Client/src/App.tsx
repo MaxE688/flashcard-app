@@ -5,6 +5,7 @@ import Flashcard from './components/Flashcard'
 
 function App() {
 
+	//sets actions for routing on the server
 	const actions = {
 		create: 'create', 
 		update: 'update', 
